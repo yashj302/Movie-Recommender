@@ -1,3 +1,11 @@
+#Data File
+'''
+UserID | MovieID | ratings
+...      ...        ...
+
+'''
+
+
 import math
 import re
 
