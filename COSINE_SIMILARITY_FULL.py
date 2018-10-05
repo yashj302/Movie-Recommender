@@ -1,5 +1,5 @@
 import math
-
+import re
 
 cal_v = dict()
 cal_1 = dict()
@@ -10,21 +10,25 @@ sum_1 = 0.0
 sum_v = 0.0
 def cosine_simil(cal_v,cal_1):
     global sum_1,sum_v,customer1_dictionary,variable_dictionary,dot_product,x
+
     for keys,values in cal_1.items():
         dot_product += cal_v[keys]*cal_1[keys]
     sum_1 = 0.0
     sum_v = 0.0
-    for keys,values in customer1_dictionary.items():
+
+    for keys,values in cal_1.items():
         sum_1 += math.pow(values,2)
-    for keys,values in variable_dictionary.items():
+
+    for keys,values in cal_v.items():
         sum_v += math.pow(values,2)
+
     cosine_similarity = (dot_product/(math.sqrt(sum_1) * math.sqrt(sum_v)))
     print('COSINE SIMILARITY :-- ',cosine_similarity,'  With CUSTOMER ID:---- ',x)
     dot_product=0.0
 
-
 customer1_dictionary = dict()
 file = open('ratings.csv')
+
 for line in file:
     if(int(line.split(',')[0])==1):
         customer1_dictionary[int(line.split(',')[1])]=float(line.split(',')[2])
